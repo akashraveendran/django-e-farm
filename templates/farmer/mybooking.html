@@ -1,0 +1,33 @@
+{% extends "farmerhome.html" %}
+{% block content %}
+  <div class="container mt-5">
+    
+    {% for m  in messages  %}
+    <h6 style="text-align:center;color:orange">{{m}}</h6>
+      
+    {% endfor %}
+      
+<table class="table">
+    <tr>
+        <th>Product Name</th>
+        <th>Product Category</th>
+        <th>Product Price</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    {% for p in product %}
+    <tr>
+        <td>{{p.product.Product_Name}}</td>
+        <td>{{p.product.Product_Category}}</td>
+        <td>{{p.product.Product_price}}</td>
+        <td>{{p.status}}</td>
+        <td>
+            <a href="{%url 'CancelOrderFarmer' p.id %}" class="btn btn-warning btn-sm">Cancel Order</a>
+            <a href="{%url 'DeleteOrderFarmer' p.id %}" class="btn btn-outline-danger btn-sm" >Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+  </div>
+  <br><br>
+{% endblock %} 

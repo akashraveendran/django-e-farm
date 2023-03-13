@@ -1,0 +1,24 @@
+{% extends "admin/adminhome.html" %}
+{% block content %}
+<div class="container mt-5">
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email Id</th>
+            <th>User Type</th>
+            <th>Action</th>
+        </tr>
+        {% for u in user  %}
+        <tr>
+          <td>{{u.first_name}} {{u.last_name}}</td>
+          <td>{{u.username}}</td>
+          <td>{{u.email}}</td>
+          <td>{{u.groups.all.0.name}}</td>
+          <td><a href="" onclick="alert('You Cannot Delete Goto admin pannel To Delete Item ')" class="btn btn-outline-danger btn-sm">delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

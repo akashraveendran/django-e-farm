@@ -1,0 +1,86 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<style>
+    .itemcontainer {
+        width: 90%;
+        height: 400px;
+        margin: auto;
+        padding: 30px;
+        text-align: center;
+        border: 3px solid orange;
+    }
+    .itemcontainer input{
+        width:90%;
+        padding: 6px;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="container mt-5">
+    {% for i in product %}
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="itemcontainer">
+                <img src="{{i.Product_Image.url}}" width="80%" height="80%" alt="">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="itemcontainer">
+                <h4>Product Name: {{i.Product_Name}}</h4>
+                <h4>Product Price: {{i.Product_price}}</h4>
+                <h4>Product Category: {{i.Product_Category}}</h4>
+
+<br><br><br>
+
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="itemcontainer">
+                <h6>Enter Your Details For Place order</h6>
+                
+                {% if datalen <= 0 %}
+                <form method="post">
+                    {% csrf_token %}
+                <input type="text" name="name" placeholder="Name" required> <br>
+                <input type="text" name="house" placeholder="House" required> <br>
+                <input type="text" name="city" placeholder="City" required> <br>
+                <input type="text" name="state" placeholder="State" required> <br>
+                <input type="number" name="phone" placeholder="Phone Number" required><br><br><br>
+                <button type="submit" class="btn btn-outline-warning">Place Order</button>
+
+                {% else %}
+
+                <form method="post">
+                    {% csrf_token %}
+                    {% for userdata in userdata1 %}
+                      
+                <input type="text" name="name" placeholder="Name" value="{{userdata.name}}" required> <br>
+                <input type="text" name="house" placeholder="House" value="{{userdata.house}}" required> <br>
+                <input type="text" name="city" placeholder="City" value="{{userdata.city}}" required> <br>
+                <input type="text" name="state" placeholder="State" value="{{userdata.state}}" required> <br>
+                <input type="number" name="phone" placeholder="Phone Number" value="{{userdata.phone}}" required><br><br><br>
+                <button type="submit" class="btn btn-outline-warning">Place Order</button>
+                {% endfor %}
+
+
+                    
+                {% endif %}
+                    
+                
+                
+                
+
+</form>
+
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

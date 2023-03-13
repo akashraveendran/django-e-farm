@@ -1,0 +1,40 @@
+{% extends "farmerhome.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <h3 style="text-align:center">All Products</h3>
+    <br><br>
+    <!-- Products Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="mx-auto text-center mb-5" style="max-width: 500px;">
+                <h6 class="text-primary text-uppercase">Products</h6>
+                
+            </div>
+            <div class="owl-carousel product-carousel px-5">
+                {% for prod in products  %}
+                  
+                <div class="pb-5">
+                    <div class="product-item position-relative bg-white d-flex flex-column text-center">
+                        <img class="img-fluid mb-4" src="{{prod.Product_image.url}}" height="200px" alt="">
+                        <h6 class="mb-3">{{prod.Product_Name}}</h6>
+                        <h6 class="mb-3 text-info" >{{prod.Product_Category}}</h6>
+                        <h5 class="text-primary mb-0">Rs.{{prod.Product_price}}</h5>
+                        <div class="btn-action d-flex justify-content-center">
+                            <!-- <a class="btn bg-primary py-2 px-3" href=""><i class="bi bi-cart text-white"></i></a> -->
+                            <a class="btn bg-secondary py-2 px-3" href="{%url 'ProductSignleView' prod.id %}"><i class="bi bi-eye text-white"></i></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                
+            </div>
+        </div>
+    </div>
+    <!-- Products End -->
+    
+    </div>
+</div>
+
+{% endblock %}

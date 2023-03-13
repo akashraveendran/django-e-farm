@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container mt-3 text-center">
+    <br>
+    <h1>Kindly confirm Who You are</h1>
+
+    <br><br>
+
+    <a style="margin-right:10%" href="{%url 'UserGroupChange' 'customer' %}" class="btn btn-info btn-lg">I Am A Customer</a>
+    <a href="{%url 'UserGroupChange' 'farmer' %}" class="btn btn-outline-success btn-lg">I Am A Farmer</a>
+</div>
+  
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "admin/adminhome.html" %}
+{% block content %}
+<style>
+    ul{
+        list-style: none;
+    }
+    .formcontainer{
+        width:50%;
+        height: auto;
+        border: 1px solid orange;
+        border-radius: 20px;
+        margin: auto;
+        margin-top: 20px;
+    }
+    .formcontainer input{
+        width:80%;
+        padding: 6px;
+    }
+</style>
+<div class="container text-center">
+    <div class="formcontainer">
+        <br>
+    <h3>Add An Expert</h3>
+    {% for m in messages %}
+    <h6 style="color:red">{{m}}</h6>
+      
+    {% endfor %}
+    <h6 style="color:red">{{form.errors}}</h6>
+<form method="post">
+    {% csrf_token %}
+
+    {% for f in form  %}
+      {{f.label}}: <br>
+      {{f}} <br><br>
+    {% endfor %}
+
+    <br><br>
+    <button type="submit" class="btn btn-info">Submit</button>
+</form>
+<br><br>
+</div>
+</div>
+  
+{% endblock %}

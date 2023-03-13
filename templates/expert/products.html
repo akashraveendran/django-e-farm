@@ -1,0 +1,81 @@
+{% extends "expert/experthome.html" %}
+{% block content %}
+<style>
+    .modal-body{
+        padding: 30px;
+        text-align: center;
+    }
+    .modal-body input,select{
+        width:80%;
+        padding: 6px;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="container text-center">
+        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-info btn-lg">Add New Products</button>
+    </div>
+    <!-- Button trigger modal -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Products</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            
+         <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for fields in form %}
+            {{fields.label}}: <br>
+            {{fields}} <br><br>
+            {% endfor %}
+        </div>
+        <div class="modal-footer">
+          <a type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+         </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- endmodel -->
+    <div class="container mt-5">
+        <h2 class="text-center">Product list</h2><br><br>
+        {% for m in messages  %}
+       
+        <h6 style="color:orange;text-align:center">{{m}}</h6>
+          
+        {% endfor %}
+        <table class="table">
+            <tr>
+                <th>Product Name</th>
+                <th>Product Category</th>
+                <th>Product price</th>
+                <th>Product Image</th>
+                <th>Product stock</th>
+                <th>Actions</th>
+            </tr>
+        {% for i in products %}
+            <tr>
+                <td>{{i.Product_Name}}</td>
+                <td>{{i.Product_Category}}</td>
+                <td>{{i.Product_price}}</td>
+                <td><img src="{{i.Product_image.url}}" width="auto" height="100px" alt=""></td>
+                <td>{{i.Product_stock}}</td>
+                <td>
+                    <!-- <a href="" class="btn btn-outline-warning btn-sm">Upadte</a> -->
+                    <a href="{%url 'DeleteFarmProducts' i.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+                </td>
+            {% endfor %}
+            </tr>
+        </table>
+    </div>
+</div>
+  <br><br><br>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "expert/experthome.html" %}
+{% block content %}
+
+<div class="comtainer mt-5">
+    <div class="container mt-5">
+        <h2 class="text-center">Orderlist list</h2><br><br>
+        {% for m in messages  %}
+
+        <h6 style="color:orange;text-align:center">{{m}}</h6>
+
+        {% endfor %}
+        <table class="table">
+            <tr>
+                <th>Product Name</th>
+                <th>Product Category</th>
+                <th>Product price</th>
+                <th>Product stock</th>
+                <th>Order by</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            {% for i in orders %}
+            {% if i.product.user == request.user %}
+
+            <tr>
+                <td>{{i.product.Product_Name}}</td>
+                <td>{{i.product.Product_Category}}</td>
+                <td>{{i.product.Product_price}}</td>
+                <td>{{i.product.Product_stock}}</td>
+                <td>{{i.status}}</td>
+                <td>{{i.user.first_name}}</td>
+
+                <td>
+                    <!-- <a href="" class="btn btn-outline-warning btn-sm">Upadte</a> -->
+                    <a href="{%url 'AcceptOrder' i.id %}" class="btn btn-outline-success btn-sm">Accept Order</a>
+                    <a href="{%url 'DespachOrder' i.id %}" class="btn btn-outline-info btn-sm">Despach Order</a>
+                    <a href="{%url 'RejectOrder' i.id %}" class="btn btn-outline-danger btn-sm">Reject Order</a>
+                    <a href="{%url 'DeleteOrder' i.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+                </td>
+                {% endif %}
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
