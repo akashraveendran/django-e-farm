@@ -13,4 +13,5 @@ urlpatterns = [
     path("MyProducts",views.MyProducts,name="MyProducts"),
     path("CancelOrderFarmer/<int:pk>",views.CancelOrderFarmer,name="CancelOrderFarmer"),
     path("DeleteOrderFarmer/<int:pk>",views.DeleteOrderFarmer,name="DeleteOrderFarmer"),
+    # view added lands
 ]

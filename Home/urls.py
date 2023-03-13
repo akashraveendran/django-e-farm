@@ -13,6 +13,6 @@ urlpatterns = [
     path("ExpertAdd",views.ExpertAdd,name="ExpertAdd"),
     path("UserList",views.UserList,name="UserList"),
     path("ExpertHome",views.ExpertHome,name="ExpertHome"),
-    
+    #add land for lease,and view added lands (add models and forms)
     
 ]
